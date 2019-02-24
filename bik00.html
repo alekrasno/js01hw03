@@ -1,0 +1,67 @@
+<DOCTYPE html>
+<html>
+  <head>
+    <title>Быки и коровы</title>
+  </head> 
+  <body>
+    <script>
+		
+		// 1 - комп загадал число
+		// 2 - пользователь вводит ответы
+		// 3 - комп проверяет ответы
+		
+		var randomizer = function()	{ // ГСЧ
+			return (Math.floor(Math.random() * 10));
+		}
+		
+		
+		var game = function()	{	// Главная функция  игры
+			var x = []; // Загаданные числа
+		
+			for (let i = 1; i <= 4; i++) { // Формирование загаданных чисел
+				x.push (randomizer())				
+			}
+			console.log(x);
+		
+			var bulls = 0;	// Быки
+			var cows = 0;	// Коровы
+			
+			var check = function(answer)	{ // Проверка ходов игрока
+				var separator = function(answer)	{	// Разложение ответа игрока в массив
+					let playerArray = []; // Массив - ответ игрока
+					let playerArrayElement; // Элемент ответа игрока
+					for (let i = 1; i <= 4; i++)	{
+						playerArray.push = answer.substr(i, 1);
+					}
+				}
+					for (let i = 1; i <= 4; i++)	{ // Проверка быков
+						if (playerArray[i] = x[i])	{
+							bulls++;
+						} else {
+							
+						}
+					}
+					if (playerArrayElement = 
+				//console.log(user);
+				// return true;
+			}
+		
+		let counter = 0; // Счетчик ходов
+		let end = false; // Флажок окончания игры
+		console.log ('Игра началась');
+			while (end != true) {
+				if (counter == 9)	{ // Лимит ходов исчерпан
+					alert ('game over');	// Конец игры
+					break;
+				} else	{	// Ходы еще есть
+					let userNumber = prompt ('Введите число'); // 
+					counter++;	
+					end = check(userNumber); // Проверка совпадений
+			}
+		}
+			
+/================		
+		game ();
+    </script>
+  </body>
+</html> 
