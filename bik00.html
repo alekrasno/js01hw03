@@ -10,58 +10,82 @@
 		// 2 - пользователь вводит ответы
 		// 3 - комп проверяет ответы
 		
-		var randomizer = function()	{ // ГСЧ
-			return (Math.floor(Math.random() * 10));
-		}
 		
 		
-		var game = function()	{	// Главная функция  игры
-			var x = []; // Загаданные числа
-		
-			for (let i = 1; i <= 4; i++) { // Формирование загаданных чисел
-				x.push (randomizer())				
-			}
-			console.log(x);
-		
-			var bulls = 0;	// Быки
-			var cows = 0;	// Коровы
+		var game = function()	{	// Главная функция игры
+			let xxxx = []; // Загаданные числа
+			let bulls = 0;	// Быки
+			let cows = 0;	// Коровы
+			let answer = ''; // Ответ игрока - строка
+			let answerArray = []; // Ответ игрока - массив
+			let counter = 0; // Счетчик ходов
+			let end = false; // Флажок окончания игры
 			
-			var check = function(answer)	{ // Проверка ходов игрока
-				var separator = function(answer)	{	// Разложение ответа игрока в массив
-					let playerArray = []; // Массив - ответ игрока
-					let playerArrayElement; // Элемент ответа игрока
-					for (let i = 1; i <= 4; i++)	{
-						playerArray.push = answer.substr(i, 1);
-					}
-				}
-					for (let i = 1; i <= 4; i++)	{ // Проверка быков
-						if (playerArray[i] = x[i])	{
-							bulls++;
-						} else {
-							
+			var randomizer = function()	{ 					// ГСЧ
+				a = (Math.floor(Math.random() * 10));
+				return (Math.floor(Math.random() * 10));
+			}
+		
+			var check = function(x)	{	// Проверка совпадений
+				bulls = 0;
+				cows = 0;
+				console.log('Ответ игрока ' + x);
+
+				for (let i = 0; i <= 3; i++)	{ // Подсчет быков
+					if (x.substr(i, 1) == xxxx[i])	{
+						bulls++;
+						if (bulls == 4)	{ // Победа
+							end = true;
+							alert('С победой!');
+						}
+					} else {	
+						for (let j = 0; j <= 3; j++)	{ // Подсчет коров
+							if (x.substr(i, 1) == xxxx[j])	{
+								cows++;							
+							}
 						}
 					}
-					if (playerArrayElement = 
-				//console.log(user);
-				// return true;
+						
+				}
+				console.log('Быков ' + bulls + ', коров ' + cows); 
 			}
-		
-		let counter = 0; // Счетчик ходов
-		let end = false; // Флажок окончания игры
-		console.log ('Игра началась');
+			
+			for (let i = 0; xxxx.length < 4; i++) { // Формирование загаданных чисел
+				//console.log('Чисел в массиве - ' + xxxx.length);
+				a = randomizer(); // ГСЧ
+				// console.log('i = ' + i + '  a = ' + a);
+				console.log('Число среди загаданных есть? ' + (xxxx.indexOf(a) >= 0)) // Проверка наличия числа среди уже загаданных
+				if (xxxx.indexOf(a) != -1)	{ // Если есть
+					console.log(a +' уже есть на ' + (xxxx.indexOf(a) + 1) + '-м месте');
+					a = randomizer();
+				} else {	// Если нет
+					xxxx.push (a);	
+				}
+			}
+			
+			console.log('Загадано ' + xxxx);
+						
+			console.log ('Игра началась');
 			while (end != true) {
 				if (counter == 9)	{ // Лимит ходов исчерпан
-					alert ('game over');	// Конец игры
+					alert ('Конец игры. Заходите еще!');	// Конец игры
 					break;
 				} else	{	// Ходы еще есть
-					let userNumber = prompt ('Введите число'); // 
+					console.log('Счетчик ходов ' + counter);
+					answer = prompt ('Введите число'); // 
 					counter++;	
-					end = check(userNumber); // Проверка совпадений
+					//separator(answer);
+					//console.log('Ответ игрока (массив) ' + answerArray);
+					check(answer); // Проверка совпадений
+				}
 			}
 		}
 			
-/================		
-		game ();
+			
+//================		
+		
+			game();
+		
     </script>
   </body>
 </html> 
