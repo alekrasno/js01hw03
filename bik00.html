@@ -11,50 +11,55 @@
 		// 3 - комп проверяет ответы
 		
 		
-		
-		var game = function()	{	// Главная функция игры
-			let xxxx = []; // Загаданные числа
+		var play = function()	{	// Главная функция игры
+			let xxxx = []; // Загаданные цифры
 			let bulls = 0;	// Быки
 			let cows = 0;	// Коровы
-			let answer = ''; // Ответ игрока - строка
-			let answerArray = []; // Ответ игрока - массив
+			let answer = ''; // Ответ игрока
 			let counter = 0; // Счетчик ходов
+			let attempts = []; // Попытки
+			let b_attempts = []; // Результаты попыток в быках
+			let c_attempts = []; // Результаты попыток в коровах
 			let end = false; // Флажок окончания игры
 			
 			var randomizer = function()	{ 					// ГСЧ
-				a = (Math.floor(Math.random() * 10));
-				return (Math.floor(Math.random() * 10));
+				//a = (Math.floor(Math.random() * 10));
+				return (Math.floor(Math.random() * 11));
 			}
 		
 			var check = function(x)	{	// Проверка совпадений
 				bulls = 0;
 				cows = 0;
-				console.log('Ответ игрока ' + x);
+				//console.log('Ваша комбинация ' + x);
 
 				for (let i = 0; i <= 3; i++)	{ // Подсчет быков
 					if (x.substr(i, 1) == xxxx[i])	{
 						bulls++;
 						if (bulls == 4)	{ // Победа
 							end = true;
+							console.log (x + " == " + xxxx);
 							alert('С победой!');
 						}
 					} else {	
 						for (let j = 0; j <= 3; j++)	{ // Подсчет коров
 							if (x.substr(i, 1) == xxxx[j])	{
-								cows++;							
+								cows++;					
 							}
 						}
 					}
 						
 				}
-				console.log('Быков ' + bulls + ', коров ' + cows); 
+				attempts.push (x); // Запись 
+				b_attempts.push (bulls);
+				c_attempts.push (cows);
+				for (i = 0; i < attempts.length; i++)	{
+					console.log(attempts[i] + '  |  Быков ' + b_attempts[i] + ', коров ' + c_attempts[i]);
+				}
 			}
 			
 			for (let i = 0; xxxx.length < 4; i++) { // Формирование загаданных чисел
-				//console.log('Чисел в массиве - ' + xxxx.length);
 				a = randomizer(); // ГСЧ
-				// console.log('i = ' + i + '  a = ' + a);
-				console.log('Число среди загаданных есть? ' + (xxxx.indexOf(a) >= 0)) // Проверка наличия числа среди уже загаданных
+				//console.log('Число среди загаданных есть? ' + (xxxx.indexOf(a) >= 0)) // Проверка наличия числа среди уже загаданных
 				if (xxxx.indexOf(a) != -1)	{ // Если есть
 					console.log(a +' уже есть на ' + (xxxx.indexOf(a) + 1) + '-м месте');
 					a = randomizer();
@@ -67,11 +72,11 @@
 						
 			console.log ('Игра началась');
 			while (end != true) {
-				if (counter == 9)	{ // Лимит ходов исчерпан
-					alert ('Конец игры. Заходите еще!');	// Конец игры
+				if (counter == 10)	{ // Лимит ходов исчерпан
+					alert ('Вы проиграли. В следующий раз повезёт!');	// Конец игры
 					break;
 				} else	{	// Ходы еще есть
-					console.log('Счетчик ходов ' + counter);
+					console.log('Осталось ходов ' + (10 - counter));
 					answer = prompt ('Введите число'); // 
 					counter++;	
 					//separator(answer);
@@ -84,7 +89,7 @@
 			
 //================		
 		
-			game();
+			play();
 		
     </script>
   </body>
