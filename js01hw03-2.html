@@ -1,0 +1,37 @@
+<DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8" />
+    <title>Корзина интернет-магазина</title>
+  </head> 
+  <body>
+    <script>
+		var basketGoods = ['Носки', 'Трусы', 'Зажигалки', 'Шампунь']; // Содержимое корзины
+		var goodPrices = [3, 3.5, 12, 7.6]; // Прайс-лист
+		var basketPrice = 0; // Цена корзины
+		var add2basket = function(x, y)	{
+				// Найти в списке наименование товара, определить его индекс;
+			let good = basketGoods.indexOf(x);
+				// Найти в массиве цен элемент с нужным индексом;
+				// Добавить стоимость данного товара в цену корзины с учетом количества;
+			basketPrice = basketPrice + (goodPrices[good] * y);
+			return (basketPrice);
+		}
+		
+// ----------------------
+		/*var purchasedGood; // Покупаемый товар
+		purchasedGood.kind = 'Трусы'; // Наименование
+		purchasedGood.price = 3.5; // Цена за шт.
+		purchasedGood.quant = 58; // Кол-во*/
+
+		var purchGood; // Покупаемый товар
+		var purchGoodKind = 'Трусы'; // Наименование
+		//var purchGoodPrice = 3.5; // Цена за шт.
+		var purchGoodQuant = 58; // Кол-во
+
+		add2basket (purchGoodKind, purchGoodQuant);
+		console.log('Цена корзины ' + basketPrice);
+
+    </script>
+  </body>
+</html> 
